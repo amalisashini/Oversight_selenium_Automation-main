@@ -26,10 +26,10 @@ public class AddBillingSpace {
 	WebElement spaceName;
 
 	//Billing number dropdown
-	@FindBy(xpath="//div[@id=\"react-select-3-placeholder\"]")
+	@FindBy(xpath="//div[@class='app-select_appSelectInput__9RUe8 undefined']")
 	WebElement billNumberDropDown;
 
-	 @FindBy(xpath="//div[contains(text(),'Confirm')]")
+	 @FindBy(xpath="/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/div[1]/div[1]]")
 	WebElement confirmBtn;
 
 	

@@ -39,18 +39,14 @@ public class AddBillingSpaceTest extends Base{
 
         billSpace.spaceName().sendKeys("New Space");
 
-        // JavascriptExecutor billNumDrop = (JavascriptExecutor) driver;
-        // billNumDrop.executeScript("arguments[0].click();", billSpace.billNumberDropDown());
+        WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
+        dropdown.click();
 
-        // billSpace.billNumberDropDown().sendKeys("label2 - 22220000");
+        WebElement option = driver.findElement(By.xpath("//div[contains(text(),'label2 - 22220000')]"));
+        option.click();
 
-        // WebElement dropdown = billSpace.billNumberDropDown();
-        // String optionTextToSelect = "Option text to select";
-        // String script = String.format("for (const option of arguments[0].options) { if (option.text === '%s') { option.selected = true; break; } }", optionTextToSelect);
-        // ((JavascriptExecutor) driver).executeScript(script, dropdown);
-
-        JavascriptExecutor addBillconirmBtn = (JavascriptExecutor) driver;
-        addBillconirmBtn.executeScript("arguments[0].click();", billSpace.confirmBtn());
+        JavascriptExecutor addBillconfirmBtn = (JavascriptExecutor) driver;
+        addBillconfirmBtn.executeScript("arguments[0].click();", billSpace.confirmBtn());
 		
 	}
 

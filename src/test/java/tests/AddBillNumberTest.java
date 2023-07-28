@@ -2,8 +2,10 @@ package tests;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -34,6 +36,12 @@ public class AddBillNumberTest extends Base{
         addBillBtn.executeScript("arguments[0].click();", addBill.addBillNumberBtn());
 
         addBill.billingLabel().sendKeys("Label new 1");
+
+        WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
+        dropdown.click();
+
+         WebElement option = driver.findElement(By.xpath("//div[contains(text(),'D1 - DOMESTIC')]"));
+        option.click();
 
         addBill.billNumber().sendKeys("00009876");
 
