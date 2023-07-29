@@ -43,7 +43,7 @@ public class AddBillNumberTest extends Base{
          WebElement option = driver.findElement(By.xpath("//div[contains(text(),'D1 - DOMESTIC')]"));
         option.click();
 
-        addBill.billNumber().sendKeys("00009876");
+        addBill.billNumber().sendKeys("90898444");
 
         JavascriptExecutor addBillconirmBtn = (JavascriptExecutor) driver;
         addBillconirmBtn.executeScript("arguments[0].click();", addBill.confirmBtn());

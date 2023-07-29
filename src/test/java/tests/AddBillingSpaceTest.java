@@ -39,6 +39,12 @@ public class AddBillingSpaceTest extends Base{
 
         billSpace.spaceName().sendKeys("New Space");
 
+        // JavascriptExecutor billNumberDropDown = (JavascriptExecutor) driver;
+        // billNumberDropDown.executeScript("arguments[0].click();", billSpace.billNumberDropDown());
+
+        // JavascriptExecutor option = (JavascriptExecutor) driver;
+        // option.executeScript("arguments[0].click();", billSpace.selectOption());
+
         WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
         dropdown.click();
 
