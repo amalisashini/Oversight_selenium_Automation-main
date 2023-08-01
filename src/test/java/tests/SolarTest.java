@@ -34,10 +34,27 @@ public class SolarTest extends Base{
         JavascriptExecutor newSolar = (JavascriptExecutor) driver;
         newSolar.executeScript("arguments[0].click();", solarSpace.solarBtn());
 
-       // solarSpace.solarBtn().click();
-
         JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
         CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
+
+        solarSpace.solarName().sendKeys("new solar new");
+
+        WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
+        dropdown.click();
+
+        WebElement option = driver.findElement(By.xpath("//div[contains(text(),'Test 1')]"));
+        option.click();
+
+        solarSpace.wattage().sendKeys("2");
+
+        solarSpace.numberOfPanels().sendKeys("3");
+
+        solarSpace.inverterCapacity().sendKeys("20");
+
+        solarSpace.locationName().sendKeys("Kandy");
+
+        JavascriptExecutor addBillconirmBtn = (JavascriptExecutor) driver;
+        addBillconirmBtn.executeScript("arguments[0].click();", solarSpace.confirm());
 
     }
 

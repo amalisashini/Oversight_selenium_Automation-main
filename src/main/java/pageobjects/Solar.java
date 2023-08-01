@@ -16,25 +16,33 @@ public class Solar {
     
 }
 
-    @FindBy(xpath="/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[5]/div[1]")
+    @FindBy(xpath="//span[contains(text(),'Solar')][1]")
 	WebElement solarBtn;
 	
 	@FindBy(xpath="//button[@class='undefined undefined app-button_app-button__xBnO8 app-button_app-button-blue__MyFQW app-button_app-button-large__uIHei app-button_appIconButton__9mhgd']")
 	WebElement createSolarBtn;
 
-	//Space name
-	@FindBy(xpath="//input[@name='spaceClusterLabel']")
-	WebElement spaceName;
+	//Solar name
+	@FindBy(xpath="//input[@name='name']")
+	WebElement solarName;
 
-	//Billing number dropdown
-	@FindBy(xpath="//div[@class='app-select_appSelectInput__9RUe8 undefined']")
-	WebElement billNumberDropDown;
+	//wattage of panel
+	@FindBy(xpath="//input[@placeholder='Wattage']")
+	WebElement wattage;
 
-	@FindBy(xpath="//div[contains(text(),'label2 - 22220000')]")
-	WebElement selectOption;
+	//Number of panels
+	@FindBy(xpath="//input[@placeholder='Number of Panels']")
+	WebElement numberOfPanels;
+
+	//Number of panels
+	@FindBy(xpath="//input[@placeholder='Inverter Capacity']")
+	WebElement inverterCapacity;
+
+	@FindBy(xpath="//input[@name='locationName']")
+	WebElement locationName;
 
 	 @FindBy(xpath="/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/div[1]/div[1]]")
-	WebElement confirmBtn;
+	WebElement confirm;
 
 	
 	public WebElement solarBtn() {
@@ -49,27 +57,39 @@ public class Solar {
 		
 	}
 
-	public WebElement spaceName() {
+	public WebElement solarName() {
 		
-		return spaceName;
-		
-	}
-
-	public WebElement billNumberDropDown() {
-		
-		return billNumberDropDown;
+		return solarName;
 		
 	}
 
-	public WebElement selectOption() {
+	public WebElement wattage() {
 		
-		return selectOption;
+		return wattage;
 		
 	}
 
-	public WebElement confirmBtn() {
+	public WebElement numberOfPanels() {
 		
-		return confirmBtn;
+		return numberOfPanels;
+		
+	}
+
+	public WebElement inverterCapacity() {
+		
+		return inverterCapacity;
+		
+	}
+
+	public WebElement locationName() {
+		
+		return locationName;
+		
+	}
+
+	public WebElement confirm() {
+		
+		return confirm;
 		
 	}
 
