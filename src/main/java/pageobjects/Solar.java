@@ -26,6 +26,14 @@ public class Solar {
 	@FindBy(xpath="//input[@name='name']")
 	WebElement solarName;
 
+	//Dropdown
+	@FindBy(xpath="//div[@class='app-select_appSelectInput__9RUe8 undefined']")
+	WebElement dropdown;
+
+	//Option
+	@FindBy(xpath="//div[contains(text(),'Test 1')]")
+	WebElement option;
+
 	//wattage of panel
 	@FindBy(xpath="//input[@placeholder='Wattage']")
 	WebElement wattage;
@@ -60,6 +68,18 @@ public class Solar {
 	public WebElement solarName() {
 		
 		return solarName;
+		
+	}
+
+	public WebElement dropdown() {
+		
+		return dropdown;
+		
+	}
+
+	public WebElement option() {
+		
+		return option;
 		
 	}
 

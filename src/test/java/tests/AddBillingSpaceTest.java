@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -37,7 +38,7 @@ public class AddBillingSpaceTest extends Base{
         JavascriptExecutor billSpaceBtn = (JavascriptExecutor) driver;
         billSpaceBtn.executeScript("arguments[0].click();", billSpace.createBillingSpaceBtn());
 
-        billSpace.spaceName().sendKeys("New Space");
+        billSpace.spaceName().sendKeys("space space space");
 
         // JavascriptExecutor billNumberDropDown = (JavascriptExecutor) driver;
         // billNumberDropDown.executeScript("arguments[0].click();", billSpace.billNumberDropDown());
@@ -46,10 +47,9 @@ public class AddBillingSpaceTest extends Base{
         // option.executeScript("arguments[0].click();", billSpace.selectOption());
 
         WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
-        dropdown.click();
 
-        WebElement option = driver.findElement(By.xpath("//div[contains(text(),'label2 - 22220000')]"));
-        option.click();
+        Select select = new Select(dropdown);
+        select.selectByIndex(0);
 
         JavascriptExecutor addBillconfirmBtn = (JavascriptExecutor) driver;
         addBillconfirmBtn.executeScript("arguments[0].click();", billSpace.confirmBtn());

@@ -1,6 +1,7 @@
 package tests;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -37,13 +38,24 @@ public class SolarTest extends Base{
         JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
         CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
 
-        solarSpace.solarName().sendKeys("new solar new");
+        Thread.sleep(3000);
+
+        solarSpace.solarName().sendKeys("new solar");
+
+        // JavascriptExecutor drop = (JavascriptExecutor) driver;
+        // drop.executeScript("arguments[0].click();", solarSpace.dropdown());
 
         WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
         dropdown.click();
 
-        WebElement option = driver.findElement(By.xpath("//div[contains(text(),'Test 1')]"));
-        option.click();
+        JavascriptExecutor options = (JavascriptExecutor) driver;
+        options.executeScript("arguments[0].click();", solarSpace.option());
+
+        // WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
+        // dropdown.click();
+
+        // WebElement option = driver.findElement(By.xpath("//div[contains(text(),'Test 1')]"));
+        // option.click();
 
         solarSpace.wattage().sendKeys("2");
 
