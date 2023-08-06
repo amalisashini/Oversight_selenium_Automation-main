@@ -4,12 +4,16 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import io.reactivex.rxjava3.functions.Action;
 import pageobjects.AddBillingSpace;
 import pageobjects.LoginPage;
 import resources.Base;
@@ -47,13 +51,21 @@ public class AddBillingSpaceTest extends Base{
         // option.executeScript("arguments[0].click();", billSpace.selectOption());
 
         WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
+ Actions a=new Actions(driver);
+     
+        if (dropdown.isDisplayed() && dropdown.isEnabled()) {
+         dropdown.click();
+        }
 
-        Select select = new Select(dropdown);
-        select.selectByIndex(0);
 
-        JavascriptExecutor addBillconfirmBtn = (JavascriptExecutor) driver;
-        addBillconfirmBtn.executeScript("arguments[0].click();", billSpace.confirmBtn());
-		
+        a.sendKeys(Keys.ENTER).perform();
+
+        Thread.sleep(2000);
+        billSpace.confirmBtn().click();
+
+        // JavascriptExecutor confirm = (JavascriptExecutor) driver;
+        // confirm.executeScript("arguments[0].click();", billSpace.confirmBtn());
+      
 	}
 
     @DataProvider
