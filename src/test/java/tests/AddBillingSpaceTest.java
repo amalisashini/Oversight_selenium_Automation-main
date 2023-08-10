@@ -60,11 +60,10 @@ public class AddBillingSpaceTest extends Base{
 
         a.sendKeys(Keys.ENTER).perform();
 
-        Thread.sleep(2000);
-        billSpace.confirmBtn().click();
+       Thread.sleep(2000);
+       // billSpace.confirmBtn().click();
 
-        // JavascriptExecutor confirm = (JavascriptExecutor) driver;
-        // confirm.executeScript("arguments[0].click();", billSpace.confirmBtn());
+       driver.findElement(By.xpath("//div[@class='mt-5 row']//div[@class='col-auto']//div[text()='Confirm']")).click();
       
 	}
 

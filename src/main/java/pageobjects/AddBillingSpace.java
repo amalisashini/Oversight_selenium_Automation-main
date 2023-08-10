@@ -32,7 +32,7 @@ public class AddBillingSpace {
 	@FindBy(xpath="//div[contains(text(),'label2 - 22220000')]")
 	WebElement selectOption;
 
-	 @FindBy(xpath="//div[contains(text(),'Confirm')]")
+	 @FindBy(xpath="//div[@class='mt-5 row']//div[@class='col-auto']//div[text()='Confirm']")
 	WebElement confirmBtn;
 
 	
