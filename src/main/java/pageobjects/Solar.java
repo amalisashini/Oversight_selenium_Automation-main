@@ -49,9 +49,6 @@ public class Solar {
 	@FindBy(xpath="//input[@name='locationName']")
 	WebElement locationName;
 
-	 @FindBy(xpath="/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/button[1]/div[1]/div[1]]")
-	WebElement confirm;
-
 	
 	public WebElement solarBtn() {
 		
@@ -107,10 +104,5 @@ public class Solar {
 		
 	}
 
-	public WebElement confirm() {
-		
-		return confirm;
-		
-	}
 
 }

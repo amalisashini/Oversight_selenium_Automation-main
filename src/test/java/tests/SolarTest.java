@@ -5,8 +5,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
@@ -38,24 +40,19 @@ public class SolarTest extends Base{
         JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
         CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
 
-        Thread.sleep(3000);
+         Thread.sleep(1000);
 
         solarSpace.solarName().sendKeys("new solar");
 
-        // JavascriptExecutor drop = (JavascriptExecutor) driver;
-        // drop.executeScript("arguments[0].click();", solarSpace.dropdown());
+        WebElement dropdown = driver.findElement(By.cssSelector("div[class='d-block'] div[class='app-select_appSelectInput__9RUe8 undefined']"));
 
-        WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
-        dropdown.click();
+        Actions a=new Actions(driver);
+     
+        if (dropdown.isDisplayed() && dropdown.isEnabled()) {
+         dropdown.click();
+        }
 
-        JavascriptExecutor options = (JavascriptExecutor) driver;
-        options.executeScript("arguments[0].click();", solarSpace.option());
-
-        // WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
-        // dropdown.click();
-
-        // WebElement option = driver.findElement(By.xpath("//div[contains(text(),'Test 1')]"));
-        // option.click();
+        a.sendKeys(Keys.ENTER).perform();
 
         solarSpace.wattage().sendKeys("2");
 
@@ -65,8 +62,8 @@ public class SolarTest extends Base{
 
         solarSpace.locationName().sendKeys("Kandy");
 
-        JavascriptExecutor addBillconirmBtn = (JavascriptExecutor) driver;
-        addBillconirmBtn.executeScript("arguments[0].click();", solarSpace.confirm());
+       WebElement confirm = driver.findElement(By.cssSelector("div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']"));
+       confirm.click();
 
     }
 

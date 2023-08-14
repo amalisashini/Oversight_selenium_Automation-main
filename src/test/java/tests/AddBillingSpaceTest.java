@@ -8,12 +8,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import io.reactivex.rxjava3.functions.Action;
 import pageobjects.AddBillingSpace;
 import pageobjects.LoginPage;
 import resources.Base;
@@ -51,7 +48,7 @@ public class AddBillingSpaceTest extends Base{
         // option.executeScript("arguments[0].click();", billSpace.selectOption());
 
         WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
- Actions a=new Actions(driver);
+        Actions a=new Actions(driver);
      
         if (dropdown.isDisplayed() && dropdown.isEnabled()) {
          dropdown.click();
@@ -63,7 +60,8 @@ public class AddBillingSpaceTest extends Base{
        Thread.sleep(2000);
        // billSpace.confirmBtn().click();
 
-       driver.findElement(By.xpath("//div[@class='mt-5 row']//div[@class='col-auto']//div[text()='Confirm']")).click();
+       WebElement confirm = driver.findElement(By.cssSelector("div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']"));
+       confirm.click();
       
 	}
 
