@@ -2,10 +2,13 @@ package tests;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -37,21 +40,22 @@ public class AddBillingSpaceTest extends Base{
         JavascriptExecutor billSpaceBtn = (JavascriptExecutor) driver;
         billSpaceBtn.executeScript("arguments[0].click();", billSpace.createBillingSpaceBtn());
 
-        billSpace.spaceName().sendKeys("New Space");
+        String randomSpaceName = RandomStringUtils.randomAlphabetic(8);
+        billSpace.spaceName().sendKeys(randomSpaceName);
 
-        // JavascriptExecutor billNumDrop = (JavascriptExecutor) driver;
-        // billNumDrop.executeScript("arguments[0].click();", billSpace.billNumberDropDown());
+        WebElement dropdown = billSpace.billNumberDropDown();
 
-        // billSpace.billNumberDropDown().sendKeys("label2 - 22220000");
+        Actions a=new Actions(driver);
+     
+        if (dropdown.isDisplayed() && dropdown.isEnabled()) {
+         dropdown.click();
+        }
 
-        // WebElement dropdown = billSpace.billNumberDropDown();
-        // String optionTextToSelect = "Option text to select";
-        // String script = String.format("for (const option of arguments[0].options) { if (option.text === '%s') { option.selected = true; break; } }", optionTextToSelect);
-        // ((JavascriptExecutor) driver).executeScript(script, dropdown);
+        a.sendKeys(Keys.ENTER).perform();
 
-        JavascriptExecutor addBillconirmBtn = (JavascriptExecutor) driver;
-        addBillconirmBtn.executeScript("arguments[0].click();", billSpace.confirmBtn());
-		
+        billSpace.confirmBtn().click();
+
+      
 	}
 
     @DataProvider
