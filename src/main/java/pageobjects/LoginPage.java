@@ -23,6 +23,9 @@ public class LoginPage {
 
 	@FindBy(xpath="//div[@class='justify-content-center align-items-center g-2 row']")
 	WebElement loginButton;
+
+	@FindBy(xpath="//span[contains(text(),'Hello,')]")
+	WebElement headerText;
 	
 	public WebElement emailAddressTextField() {
 		
@@ -39,5 +42,9 @@ public class LoginPage {
 	public WebElement loginButton() {
 		
 		return loginButton;
+	}
+
+	public WebElement headerText(){
+		return headerText;
 	}
 }

@@ -2,6 +2,7 @@ package tests;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -39,29 +40,21 @@ public class AddBillingSpaceTest extends Base{
         JavascriptExecutor billSpaceBtn = (JavascriptExecutor) driver;
         billSpaceBtn.executeScript("arguments[0].click();", billSpace.createBillingSpaceBtn());
 
-        billSpace.spaceName().sendKeys("space space space");
+        String randomSpaceName = RandomStringUtils.randomAlphabetic(8);
+        billSpace.spaceName().sendKeys(randomSpaceName);
 
-        // JavascriptExecutor billNumberDropDown = (JavascriptExecutor) driver;
-        // billNumberDropDown.executeScript("arguments[0].click();", billSpace.billNumberDropDown());
+        WebElement dropdown = billSpace.billNumberDropDown();
 
-        // JavascriptExecutor option = (JavascriptExecutor) driver;
-        // option.executeScript("arguments[0].click();", billSpace.selectOption());
-
-        WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
         Actions a=new Actions(driver);
      
         if (dropdown.isDisplayed() && dropdown.isEnabled()) {
          dropdown.click();
         }
 
-
         a.sendKeys(Keys.ENTER).perform();
 
-       Thread.sleep(2000);
-       // billSpace.confirmBtn().click();
+        billSpace.confirmBtn().click();
 
-       WebElement confirm = driver.findElement(By.cssSelector("div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']"));
-       confirm.click();
       
 	}
 

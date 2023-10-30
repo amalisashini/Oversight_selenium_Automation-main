@@ -1,11 +1,11 @@
 package tests;
 
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -35,18 +35,24 @@ public class AddBillNumberTest extends Base{
         JavascriptExecutor addBillBtn = (JavascriptExecutor) driver;
         addBillBtn.executeScript("arguments[0].click();", addBill.addBillNumberBtn());
 
-        addBill.billingLabel().sendKeys("Label new 1");
+        String randomLabel = RandomStringUtils.randomAlphabetic(8);
+        addBill.billingLabel().sendKeys(randomLabel);
 
-        WebElement dropdown = driver.findElement(By.xpath("//div[@class='app-select_appSelectInput__9RUe8 undefined']"));
-        dropdown.click();
+        WebElement dropdown = addBill.tariffDrop();
 
-         WebElement option = driver.findElement(By.xpath("//div[contains(text(),'D1 - DOMESTIC')]"));
-        option.click();
+        Actions a=new Actions(driver);
 
-        addBill.billNumber().sendKeys("90898444");
+        if (dropdown.isDisplayed() && dropdown.isEnabled()) {
+            dropdown.click();
+        }
 
-        JavascriptExecutor addBillconirmBtn = (JavascriptExecutor) driver;
-        addBillconirmBtn.executeScript("arguments[0].click();", addBill.confirmBtn());
+        a.sendKeys(Keys.ENTER).perform();
+
+        String randomBillNumber = RandomStringUtils.randomNumeric(8);
+        addBill.billNumber().sendKeys(randomBillNumber);
+
+        JavascriptExecutor addBillConfirmBtn = (JavascriptExecutor) driver;
+        addBillConfirmBtn.executeScript("arguments[0].click();", addBill.confirmBtn());
 
 }
 

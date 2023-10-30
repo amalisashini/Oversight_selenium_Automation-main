@@ -14,9 +14,7 @@ public class AddBillNumber {
 		PageFactory.initElements(driver,this);
 	
 	}
-	
-	// @FindBy(xpath="//div[@class='px-2 order-1 order-lg-2 col-auto']")
-	// WebElement ProfileIcon;
+
 	
     @FindBy(xpath="//span[@style='display: table-cell; vertical-align: middle; white-space: nowrap;']")
 	WebElement ProfileIcon;
@@ -24,9 +22,14 @@ public class AddBillNumber {
 	@FindBy(xpath="//button[@class='me-2 d-none d-sm-block undefined app-button_app-button__xBnO8 app-button_app-button-blue__MyFQW app-button_app-button-medium__WWpFr false']")
 	WebElement addBillNumberBtn;
 
-	//Space name
 	@FindBy(xpath="//input[@name='label']")
 	WebElement billingLabel;
+
+	@FindBy(css="div[class='d-block'] div[class='app-select_appSelectInput__9RUe8 undefined']")
+	WebElement tariffDrop;
+
+	@FindBy(xpath="//div[contains(text(),'D1 - DOMESTIC')]")
+	WebElement optionDrop;
 
     @FindBy(xpath="//input[@name='accountNumber']")
 	WebElement billNumber;
@@ -47,12 +50,20 @@ public class AddBillNumber {
 	}
 
 	public WebElement billingLabel() {
-		
+
 		return billingLabel;
-		
 	}
 
-    public WebElement billNumber() {
+	public WebElement tariffDrop(){
+		return tariffDrop;
+	}
+
+	public WebElement optionDrop(){
+		return optionDrop;
+	}
+
+
+	public WebElement billNumber() {
 		
 		return billNumber;
 		

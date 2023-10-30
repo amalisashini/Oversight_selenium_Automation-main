@@ -26,13 +26,13 @@ public class AddBillingSpace {
 	WebElement spaceName;
 
 	//Billing number dropdown
-	@FindBy(xpath="//div[@class='app-select_appSelectInput__9RUe8 undefined']")
+	@FindBy(css="div[class='d-block'] div[class='app-select_appSelectInput__9RUe8 undefined']")
 	WebElement billNumberDropDown;
 
 	@FindBy(xpath="//div[contains(text(),'label2 - 22220000')]")
 	WebElement selectOption;
 
-	 @FindBy(xpath="//div[@class='mt-5 row']//div[@class='col-auto']//div[text()='Confirm']")
+	 @FindBy(css="div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']")
 	WebElement confirmBtn;
 
 	

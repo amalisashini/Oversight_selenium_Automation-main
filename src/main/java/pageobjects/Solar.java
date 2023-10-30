@@ -27,8 +27,8 @@ public class Solar {
 	WebElement solarName;
 
 	//Dropdown
-	@FindBy(xpath="//div[@class='app-select_appSelectInput__9RUe8 undefined']")
-	WebElement dropdown;
+	@FindBy(css="div[class='d-block'] div[class='app-select_appSelectInput__9RUe8 undefined']")
+	WebElement spaceDropdown;
 
 	//Option
 	@FindBy(xpath="//div[contains(text(),'Test 1')]")
@@ -49,6 +49,9 @@ public class Solar {
 	@FindBy(xpath="//input[@name='locationName']")
 	WebElement locationName;
 
+	@FindBy(css="div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']")
+	WebElement confirmButton;
+
 	
 	public WebElement solarBtn() {
 		
@@ -68,9 +71,9 @@ public class Solar {
 		
 	}
 
-	public WebElement dropdown() {
+	public WebElement spaceDropdown() {
 		
-		return dropdown;
+		return spaceDropdown;
 		
 	}
 
@@ -102,6 +105,10 @@ public class Solar {
 		
 		return locationName;
 		
+	}
+
+	public WebElement confirmButton(){
+		return confirmButton;
 	}
 
 

@@ -3,6 +3,7 @@ package tests;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -40,16 +41,15 @@ public class SolarTest extends Base{
         JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
         CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
 
-         Thread.sleep(1000);
+        String randomSolarName = RandomStringUtils.randomAlphabetic(8);
+        solarSpace.solarName().sendKeys(randomSolarName);
 
-        solarSpace.solarName().sendKeys("new solar");
-
-        WebElement dropdown = driver.findElement(By.cssSelector("div[class='d-block'] div[class='app-select_appSelectInput__9RUe8 undefined']"));
+        WebElement spaceDrop = solarSpace.spaceDropdown();
 
         Actions a=new Actions(driver);
      
-        if (dropdown.isDisplayed() && dropdown.isEnabled()) {
-         dropdown.click();
+        if (spaceDrop.isDisplayed() && spaceDrop.isEnabled()) {
+            spaceDrop.click();
         }
 
         a.sendKeys(Keys.ENTER).perform();
@@ -62,8 +62,8 @@ public class SolarTest extends Base{
 
         solarSpace.locationName().sendKeys("Kandy");
 
-       WebElement confirm = driver.findElement(By.cssSelector("div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']"));
-       confirm.click();
+        JavascriptExecutor confirm = (JavascriptExecutor) driver;
+        confirm.executeScript("arguments[0].click();",  solarSpace.confirmButton());
 
     }
 

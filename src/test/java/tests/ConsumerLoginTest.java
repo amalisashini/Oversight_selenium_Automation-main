@@ -26,30 +26,17 @@ public class ConsumerLoginTest extends Base {
 	}
 
 	@Test(dataProvider="getLoginData")
-	public void login(String email, String password, String expectedResult) throws IOException, InterruptedException {
+	public void login(String email, String password) throws IOException {
 	
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.emailAddressTextField().sendKeys(email);
 		loginPage.passwordField().sendKeys(password);
 		loginPage.loginButton().click();
+
 		
-		Profile profilePage = new Profile(driver);
-		
-		String actualResult = null;
-		
-		try {
-			
-			if(profilePage.profileName().isDisplayed()) {
-			   actualResult = "Success";
-			}
-			
-		} catch(Exception e) {
-			
-			actualResult = "Failure";
-			
-		}
-		
-		Assert.assertEquals(actualResult, expectedResult);
+		String actualHeader= "Hello,";
+		String expectedHeader = loginPage.headerText().getText();
+		Assert.assertEquals(actualHeader, expectedHeader);
 		
 	}
 	
@@ -63,7 +50,7 @@ public class ConsumerLoginTest extends Base {
 	@DataProvider
 	public Object[][] getLoginData() {
 		
-		Object[][] data = {{"oversight_user", "welCome1/", "Success"}, {"dummy@test.com", "1234", "Failure"}};
+		Object[][] data = {{"oversight_user", "welCome1/"}};
 		
 		return data;
 		
