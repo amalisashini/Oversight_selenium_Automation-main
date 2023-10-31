@@ -16,14 +16,14 @@ public class Solar {
     
 }
 
-    @FindBy(xpath="//span[contains(text(),'Solar')][1]")
+    @FindBy(xpath="(//span[contains(@class,'ms-2')][normalize-space()='Solar'])[1]")
 	WebElement solarBtn;
 	
 	@FindBy(xpath="//button[@class='undefined undefined app-button_app-button__xBnO8 app-button_app-button-blue__MyFQW app-button_app-button-large__uIHei app-button_appIconButton__9mhgd']")
 	WebElement createSolarBtn;
 
 	//Solar name
-	@FindBy(xpath="//input[@name='name']")
+	@FindBy(css="div[class='d-block'] input[placeholder='Enter Solar Name']")
 	WebElement solarName;
 
 	//Dropdown
@@ -51,6 +51,9 @@ public class Solar {
 
 	@FindBy(css="div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']")
 	WebElement confirmButton;
+
+	@FindBy(xpath="//div[contains(text(),'Input Generation')]")
+	WebElement addSolarGeneration;
 
 	
 	public WebElement solarBtn() {
@@ -108,7 +111,13 @@ public class Solar {
 	}
 
 	public WebElement confirmButton(){
+
 		return confirmButton;
+
+	}
+
+	public WebElement addSolarGeneration(){
+		return addSolarGeneration;
 	}
 
 

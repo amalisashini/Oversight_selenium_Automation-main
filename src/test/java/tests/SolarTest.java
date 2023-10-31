@@ -41,8 +41,8 @@ public class SolarTest extends Base{
         JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
         CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
 
-        String randomSolarName = RandomStringUtils.randomAlphabetic(8);
-        solarSpace.solarName().sendKeys(randomSolarName);
+       // String randomSolarName = RandomStringUtils.randomAlphabetic(8);
+        solarSpace.solarName().sendKeys("randomSolarName");
 
         WebElement spaceDrop = solarSpace.spaceDropdown();
 
@@ -70,7 +70,7 @@ public class SolarTest extends Base{
     @DataProvider
 	public Object[][] giveLoginData() {
 		
-		Object[][] data = {{"oversight_user", "welCome1/"}};
+		Object[][] data = {{"Sanduni_Herath", "Sanduni1998#"}};
 		
 		return data;
 		
