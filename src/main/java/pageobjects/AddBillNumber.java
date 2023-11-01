@@ -36,6 +36,9 @@ public class AddBillNumber {
 
      @FindBy(xpath="//div[contains(text(),'Confirm')]")
 	WebElement confirmBtn;
+
+	 @FindBy(xpath="(//td[@class='text-light font-size-12 font-weight-400'])[5]")
+	 WebElement editBillNumberIcon;
 	
 	public WebElement ProfileIcon() {
 		
@@ -73,6 +76,10 @@ public class AddBillNumber {
 		
 		return confirmBtn;
 		
+	}
+
+	public WebElement editBillNumberIcon(){
+		return editBillNumberIcon;
 	}
 		
 }

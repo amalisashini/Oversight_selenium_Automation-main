@@ -50,7 +50,7 @@ public class ConsumerLoginTest extends Base {
 	@DataProvider
 	public Object[][] getLoginData() {
 		
-		Object[][] data = {{"oversight_user", "welCome1/"}};
+		Object[][] data = {{"Sanduni_Herath", "Sanduni1998#"}};
 		
 		return data;
 		

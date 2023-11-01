@@ -16,50 +16,71 @@ import resources.Base;
 public class AddBillNumberTest extends Base{
      WebDriver driver;    
 
-    @Test(dataProvider="giveLoginData")
+    @Test(dataProvider="giveLoginData",priority = 1)
 	public void login(String email, String password) throws IOException, InterruptedException {
 
         driver = initializeDriver();
-		driver.get(prop.getProperty("consumerurl"));
-	
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.emailAddressTextField().sendKeys(email);
-		loginPage.passwordField().sendKeys(password);
-		loginPage.loginButton().click();
+        driver.get(prop.getProperty("consumerurl"));
 
-        AddBillNumber addBill = new AddBillNumber(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.emailAddressTextField().sendKeys(email);
+        loginPage.passwordField().sendKeys(password);
+        loginPage.loginButton().click();
 
-        JavascriptExecutor proIcon = (JavascriptExecutor) driver;
-        proIcon.executeScript("arguments[0].click();", addBill.ProfileIcon());
+    }
 
-        JavascriptExecutor addBillBtn = (JavascriptExecutor) driver;
-        addBillBtn.executeScript("arguments[0].click();", addBill.addBillNumberBtn());
+        @Test(priority = 2)
+        public void addBillNumber(){
 
-        String randomLabel = RandomStringUtils.randomAlphabetic(8);
-        addBill.billingLabel().sendKeys(randomLabel);
+            AddBillNumber addBill = new AddBillNumber(driver);
 
-        WebElement dropdown = addBill.tariffDrop();
+            JavascriptExecutor proIcon = (JavascriptExecutor) driver;
+            proIcon.executeScript("arguments[0].click();", addBill.ProfileIcon());
 
-        Actions a=new Actions(driver);
+            JavascriptExecutor addBillBtn = (JavascriptExecutor) driver;
+            addBillBtn.executeScript("arguments[0].click();", addBill.addBillNumberBtn());
 
-        if (dropdown.isDisplayed() && dropdown.isEnabled()) {
-            dropdown.click();
+            String randomLabel = RandomStringUtils.randomAlphabetic(8);
+            addBill.billingLabel().sendKeys(randomLabel);
+
+            WebElement dropdown = addBill.tariffDrop();
+
+            Actions a=new Actions(driver);
+
+            if (dropdown.isDisplayed() && dropdown.isEnabled()) {
+                dropdown.click();
+            }
+
+            a.sendKeys(Keys.ENTER).perform();
+
+            String randomBillNumber = RandomStringUtils.randomNumeric(8);
+            addBill.billNumber().sendKeys(randomBillNumber);
+
+            JavascriptExecutor addBillConfirmBtn = (JavascriptExecutor) driver;
+            addBillConfirmBtn.executeScript("arguments[0].click();", addBill.confirmBtn());
+
         }
 
-        a.sendKeys(Keys.ENTER).perform();
+        @Test(priority = 3)
+        public void editBillNumber(){
 
-        String randomBillNumber = RandomStringUtils.randomNumeric(8);
-        addBill.billNumber().sendKeys(randomBillNumber);
+            AddBillNumber edit = new AddBillNumber(driver);
 
-        JavascriptExecutor addBillConfirmBtn = (JavascriptExecutor) driver;
-        addBillConfirmBtn.executeScript("arguments[0].click();", addBill.confirmBtn());
+            JavascriptExecutor editI = (JavascriptExecutor) driver;
+            editI.executeScript("arguments[0].click();",  edit.editBillNumberIcon());
 
-}
+            edit.billingLabel().clear();
+            edit.billingLabel().sendKeys("randomLabel");
+
+
+        }
+
+
 
     @DataProvider
 	public Object[][] giveLoginData() {
 		
-		Object[][] data = {{"oversight_user", "welCome1/"}};
+		Object[][] data = {{"Sanduni_Herath", "Sanduni1998#"}};
 		
 		return data;
 		
