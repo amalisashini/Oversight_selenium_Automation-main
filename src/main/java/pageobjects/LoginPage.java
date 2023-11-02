@@ -26,6 +26,21 @@ public class LoginPage {
 
 	@FindBy(xpath="//span[contains(text(),'Hello,')]")
 	WebElement headerText;
+
+	@FindBy(css="div[role='alert'] div:nth-child(2)")
+	WebElement successToastMessage;
+
+	@FindBy(xpath="//div[contains(text(),'Bad credentials')]")
+	WebElement unSuccessToastMessage;
+
+	@FindBy(xpath="//div[contains(text(),'Login Unsuccessful')]")
+	WebElement adminUnSuccessToastMessage;
+
+	@FindBy(xpath="//input[@name='username']/following::span[text()='Username or Email is required']")
+	WebElement validationMessageOfUsername;
+
+	@FindBy(xpath="//input[@name='password']/following::span[text()='Password is required']")
+	WebElement getValidationMessageOfPassword;
 	
 	public WebElement emailAddressTextField() {
 		
@@ -46,5 +61,25 @@ public class LoginPage {
 
 	public WebElement headerText(){
 		return headerText;
+	}
+
+	public WebElement successToastMessage(){
+		return successToastMessage;
+	}
+
+	public WebElement unSuccessToastMessage(){
+		return unSuccessToastMessage;
+	}
+
+	public WebElement adminUnSuccessToastMessage(){
+		return adminUnSuccessToastMessage;
+	}
+
+	public WebElement validationMessageOfUsername(){
+		return validationMessageOfUsername;
+	}
+
+	public WebElement getValidationMessageOfPassword(){
+		return getValidationMessageOfPassword;
 	}
 }

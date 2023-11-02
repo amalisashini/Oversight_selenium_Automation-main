@@ -16,9 +16,9 @@ public class Base {
 
 	public WebDriver driver;
 	public Properties prop;
- 
+
     public WebDriver initializeDriver() throws IOException {
-		
+
 		prop = new Properties();
 		String propertiesPath = System.getProperty("user.dir")+"\\src\\main\\java\\resources\\data.properties";
 		FileInputStream fis = new FileInputStream(propertiesPath);
@@ -49,4 +49,5 @@ public class Base {
 		return driver;
 		
 	}
+
 }

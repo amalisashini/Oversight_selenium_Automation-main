@@ -24,28 +24,73 @@ public class AdminLoginTest extends Base{
 		
 	}
 
-	@Test(dataProvider="getLoginData")
-	public void login(String email, String password) throws IOException, InterruptedException {
+	@Test(dataProvider="getLoginData",priority = 1)
+	public void successAdminLoginWithValidUsernameAndPassword(String email, String password) throws IOException, InterruptedException {
 	
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.emailAddressTextField().sendKeys(email);
 		loginPage.passwordField().sendKeys(password);
 		loginPage.loginButton().click();
 
+		Thread.sleep(6000);
+		Assert.assertTrue(loginPage.successToastMessage().isDisplayed());
 
-		String actualHeader= "Hello,";
-		String expectedHeader = loginPage.headerText().getText();
-		Assert.assertEquals(actualHeader, expectedHeader);
+	}
+
+	@Test(priority = 2)
+	public void unSuccessAdminLoginWithInvalidUsernameAndPassword() throws InterruptedException {
+
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.emailAddressTextField().sendKeys("oversight_admi");
+		loginPage.passwordField().sendKeys("welCome1");
+		loginPage.loginButton().click();
+
+		Thread.sleep(6000);
+		Assert.assertTrue(loginPage.adminUnSuccessToastMessage().isDisplayed());
+
+	}
+
+	@Test(priority = 3)
+	public void unSuccessAdminLoginWithValidUsernameAndInvalidPassword() throws InterruptedException {
+
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.emailAddressTextField().sendKeys("oversight_admin");
+		loginPage.passwordField().sendKeys("welCome1");
+		loginPage.loginButton().click();
+
+		Thread.sleep(6000);
+		Assert.assertTrue(loginPage.adminUnSuccessToastMessage().isDisplayed());
+
+	}
+
+	@Test(priority = 4)
+	public void unSuccessAdminLoginWithInvalidUsernameAndValidPassword() throws InterruptedException {
+
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.emailAddressTextField().sendKeys("oversight_admi");
+		loginPage.passwordField().sendKeys("welCome1/");
+		loginPage.loginButton().click();
+
+		Thread.sleep(6000);
+		Assert.assertTrue(loginPage.adminUnSuccessToastMessage().isDisplayed());
+
+	}
+
+	@Test(priority = 5)
+	public void unSuccessAdminLoginWithoutUsernameAndPassword() throws InterruptedException {
+
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.emailAddressTextField().sendKeys("");
+		loginPage.passwordField().sendKeys("");
+		loginPage.loginButton().click();
+
+		Thread.sleep(6000);
+		Assert.assertTrue(loginPage.validationMessageOfUsername().isDisplayed());
+		Assert.assertTrue(loginPage.getValidationMessageOfPassword().isDisplayed());
 
 	}
 	
-	@AfterMethod
-	public void closure() {
-		
-		driver.close();
-		
-	}
-	
+
 	@DataProvider
 	public Object[][] getLoginData() {
 		
@@ -53,5 +98,12 @@ public class AdminLoginTest extends Base{
 		
 		return data;
 		
+	}
+
+	@AfterMethod
+	public void browserClose() {
+
+		driver.close();
+
 	}
 }
