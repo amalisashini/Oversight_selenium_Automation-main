@@ -1,6 +1,8 @@
 package tests;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -19,13 +21,14 @@ import resources.Base;
 
 public class AddBillingSpaceTest extends Base{
   
-   WebDriver driver;    
+   WebDriver driver;
+
 
     @Test(dataProvider="giveLoginData")
-	public void login(String email, String password) throws IOException, InterruptedException {
+	public void login(String email, String password) throws IOException {
 
         driver = initializeDriver();
-		driver.get(prop.getProperty("consumerurl"));
+        driver.get(prop.getProperty("consumerurl"));
 	
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.emailAddressTextField().sendKeys(email);
