@@ -18,8 +18,7 @@ import java.io.IOException;
     @Test(dataProvider="giveLoginData")
     public void profileUpdate(String email, String password) throws IOException {
 
-    driver = initializeDriver();
-    driver.get(prop.getProperty("consumerurl"));
+    driver.get("https://oversight-dev.syntaxgenie.com/");
 
     LoginPage loginPage = new LoginPage(driver);
 

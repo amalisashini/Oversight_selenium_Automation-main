@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -20,20 +21,27 @@ import pageobjects.Solar;
 import resources.Base;
 
 public class SolarTest extends Base{
-    WebDriver driver;    
+    WebDriver driver;
 
-    @Test(dataProvider="giveLoginData")
-	public void login(String email, String password) throws IOException, InterruptedException {
+    @Test(dataProvider="giveLoginData",priority = 1)
+    public void login(String email, String password) throws IOException {
 
         driver = initializeDriver();
-		driver.get(prop.getProperty("consumerurl"));
-	
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.emailAddressTextField().sendKeys(email);
-		loginPage.passwordField().sendKeys(password);
-		loginPage.loginButton().click();
+        driver.get(prop.getProperty("consumerurl"));
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.emailAddressTextField().sendKeys(email);
+        loginPage.passwordField().sendKeys(password);
+        loginPage.loginButton().click();
+
+    }
+
+    @Test(priority = 2)
+	public void addSolar() throws InterruptedException {
 
         Solar solarSpace = new Solar(driver);
+
+        Thread.sleep(2000);
            
         JavascriptExecutor newSolar = (JavascriptExecutor) driver;
         newSolar.executeScript("arguments[0].click();", solarSpace.solarBtn());
@@ -41,8 +49,10 @@ public class SolarTest extends Base{
         JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
         CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
 
-       // String randomSolarName = RandomStringUtils.randomAlphabetic(8);
-        solarSpace.solarName().sendKeys("randomSolarName");
+        Thread.sleep(2000);
+
+        String randomSolarName = RandomStringUtils.randomAlphabetic(8);
+        solarSpace.solarName().sendKeys(randomSolarName);
 
         WebElement spaceDrop = solarSpace.spaceDropdown();
 
@@ -54,6 +64,8 @@ public class SolarTest extends Base{
 
         a.sendKeys(Keys.ENTER).perform();
 
+        Thread.sleep(2000);
+
         solarSpace.wattage().sendKeys("2");
 
         solarSpace.numberOfPanels().sendKeys("3");
@@ -64,6 +76,46 @@ public class SolarTest extends Base{
 
         JavascriptExecutor confirm = (JavascriptExecutor) driver;
         confirm.executeScript("arguments[0].click();",  solarSpace.confirmButton());
+
+        Thread.sleep(4000);
+
+        Assert.assertTrue(solarSpace.solarAddingSuccessMessage().isDisplayed());
+
+        Thread.sleep(4000);
+
+    }
+
+    @Test(priority = 3)
+    public void addSolarWithoutFillingFields() throws InterruptedException {
+
+        Solar solarSpace = new Solar(driver);
+
+        JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
+        CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
+
+        Thread.sleep(2000);
+
+        String randomSolarName = RandomStringUtils.randomAlphabetic(8);
+        solarSpace.solarName().sendKeys("");
+
+        solarSpace.wattage().sendKeys("");
+
+        solarSpace.numberOfPanels().sendKeys("");
+
+        solarSpace.inverterCapacity().sendKeys("");
+
+        solarSpace.locationName().sendKeys("");
+
+        JavascriptExecutor confirm = (JavascriptExecutor) driver;
+        confirm.executeScript("arguments[0].click();",  solarSpace.confirmButton());
+        Thread.sleep(2000);
+
+        Assert.assertTrue(solarSpace.solarNameValidation().isDisplayed());
+        Assert.assertTrue(solarSpace.spaceDropdownValidation().isDisplayed());
+        Assert.assertTrue(solarSpace.wattageValidation().isDisplayed());
+        Assert.assertTrue(solarSpace.numberOfPanelsValidation().isDisplayed());
+        Assert.assertTrue(solarSpace.inverterCapacityValidation().isDisplayed());
+        Assert.assertTrue(solarSpace.locationValidation().isDisplayed());
 
     }
 

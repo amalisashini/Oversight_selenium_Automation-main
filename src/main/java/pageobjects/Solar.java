@@ -23,11 +23,11 @@ public class Solar {
 	WebElement createSolarBtn;
 
 	//Solar name
-	@FindBy(css="div[class='d-block'] input[placeholder='Enter Solar Name']")
+	@FindBy(xpath="//div[@class='d-block']//input[@name='name']")
 	WebElement solarName;
 
 	//Dropdown
-	@FindBy(css="div[class='d-block'] div[class='app-select_appSelectInput__9RUe8 undefined']")
+	@FindBy(xpath="//div[@class='d-block']//div[contains(@class,'css-19bb58m')]")
 	WebElement spaceDropdown;
 
 	//Option
@@ -51,6 +51,27 @@ public class Solar {
 
 	@FindBy(css="div[class='d-block'] div[class='col-auto'] div[class='justify-content-center align-items-center g-2 row']")
 	WebElement confirmButton;
+
+	@FindBy(xpath="//div[text()='Solar Device Added Successfully']")
+	WebElement solarAddingSuccessMessage;
+
+	@FindBy(xpath="//input[@name='name']/following::span[text()='Solar name is required']")
+	WebElement solarNameValidation;
+
+	@FindBy(xpath="//input[@name='spaceClusterId']/following::span[text()='Please select an affected space']")
+	WebElement spaceDropdownValidation;
+
+	@FindBy(xpath="//input[@placeholder='Wattage']/following::p[text()='Wattage must be required']")
+	WebElement wattageValidation;
+
+	@FindBy(xpath="//input[@placeholder='Number of Panels']/following::p[text()='Number of panels must be required']")
+	WebElement numberOfPanelsValidation;
+
+	@FindBy(xpath="//input[@placeholder='Inverter Capacity']/following::p[text()='Inverter capacity must be required']")
+	WebElement inverterCapacityValidation;
+
+	@FindBy(xpath="//input[@name='locationName']/following::span[text()='Location is required']")
+	WebElement locationValidation;
 
 	@FindBy(xpath="//div[contains(text(),'Input Generation')]")
 	WebElement addSolarGeneration;
@@ -116,9 +137,35 @@ public class Solar {
 
 	}
 
+	public WebElement solarAddingSuccessMessage(){
+		return solarAddingSuccessMessage;
+	}
+
 	public WebElement addSolarGeneration(){
 		return addSolarGeneration;
 	}
 
+	public WebElement solarNameValidation(){
+		return solarNameValidation;
+	}
 
+	public WebElement spaceDropdownValidation(){
+		return spaceDropdownValidation;
+	}
+
+	public WebElement wattageValidation(){
+		return wattageValidation;
+	}
+
+	public WebElement numberOfPanelsValidation(){
+		return numberOfPanelsValidation;
+	}
+
+	public WebElement inverterCapacityValidation(){
+		return inverterCapacityValidation;
+	}
+
+	public WebElement locationValidation(){
+		return locationValidation;
+	}
 }
