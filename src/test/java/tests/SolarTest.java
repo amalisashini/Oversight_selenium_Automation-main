@@ -117,6 +117,55 @@ public class SolarTest extends Base{
         Assert.assertTrue(solarSpace.inverterCapacityValidation().isDisplayed());
         Assert.assertTrue(solarSpace.locationValidation().isDisplayed());
 
+        Thread.sleep(2000);
+
+        solarSpace.cancelBtn().click();
+
+    }
+
+    @Test(priority = 4)
+    public void addExistingSolarName() throws InterruptedException {
+
+        Solar solarSpace = new Solar(driver);
+
+        JavascriptExecutor CreateSolar = (JavascriptExecutor) driver;
+        CreateSolar.executeScript("arguments[0].click();", solarSpace.createSolarBtn());
+
+        Thread.sleep(2000);
+
+        solarSpace.solarName().sendKeys("Test Solar 2");
+        Thread.sleep(2000);
+
+        WebElement spaceDrop = solarSpace.spaceDropdown();
+
+        Actions a=new Actions(driver);
+
+        if (spaceDrop.isDisplayed() && spaceDrop.isEnabled()) {
+            spaceDrop.click();
+        }
+
+        a.sendKeys(Keys.ENTER).perform();
+
+        Thread.sleep(2000);
+
+        solarSpace.wattage().sendKeys("100");
+
+        solarSpace.numberOfPanels().sendKeys("2");
+
+        solarSpace.inverterCapacity().sendKeys("200");
+
+        solarSpace.locationName().sendKeys("Kandy");
+
+        JavascriptExecutor confirm = (JavascriptExecutor) driver;
+        confirm.executeScript("arguments[0].click();",  solarSpace.confirmButton());
+        Thread.sleep(2000);
+
+        Assert.assertTrue(solarSpace.existSolarNameToast().isDisplayed());
+
+        Thread.sleep(2000);
+
+        solarSpace.cancelBtn().click();
+
     }
 
     @DataProvider

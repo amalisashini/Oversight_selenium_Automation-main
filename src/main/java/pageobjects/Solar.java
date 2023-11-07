@@ -76,6 +76,12 @@ public class Solar {
 	@FindBy(xpath="//div[contains(text(),'Input Generation')]")
 	WebElement addSolarGeneration;
 
+	@FindBy(xpath="//div[@class='d-block']//div[@class='col-auto col'][normalize-space()='Cancel']")
+	WebElement cancelBtn;
+
+	@FindBy(xpath="//div[contains(text(),'This solar name is already in use')]")
+	WebElement existSolarNameToast;
+
 	
 	public WebElement solarBtn() {
 		
@@ -167,5 +173,13 @@ public class Solar {
 
 	public WebElement locationValidation(){
 		return locationValidation;
+	}
+
+	public WebElement cancelBtn(){
+		return cancelBtn;
+	}
+
+	public WebElement existSolarNameToast(){
+		return existSolarNameToast;
 	}
 }
