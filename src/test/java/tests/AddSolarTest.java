@@ -1,17 +1,13 @@
 package tests;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,7 +16,7 @@ import pageobjects.LoginPage;
 import pageobjects.Solar;
 import resources.Base;
 
-public class SolarTest extends Base{
+public class AddSolarTest extends Base{
     WebDriver driver;
 
     @Test(dataProvider="giveLoginData",priority = 1)
