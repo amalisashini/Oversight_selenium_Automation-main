@@ -55,7 +55,7 @@ public class AddBillNumber {
 	@FindBy(xpath="//div[@id='root']//following::div[text()='Inserted billing label is already in use, please add a different one']")
 	WebElement existBillLabelValidation;
 
-	@FindBy(xpath="//div[@id='root']//following::div[text()='Account number can not be add or update using already added account number']")
+	@FindBy(xpath="//div[@id='root']//following::div[text()='Account number cannot be added or updated using an already added account number']")
 	WebElement existBillNumberValidation;
 
 	@FindBy(xpath="//span[contains(text(),\"Entered value can't start/end or contain only white spaces and can't contain special characters\")]")

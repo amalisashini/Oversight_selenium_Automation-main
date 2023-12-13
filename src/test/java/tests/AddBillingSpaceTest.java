@@ -64,7 +64,7 @@ public class AddBillingSpaceTest extends Base{
     @DataProvider
 	public Object[][] giveLoginData() {
 		
-		Object[][] data = {{"Sanduni_Herath", "Sanduni1998#"}};
+		Object[][] data = {{"Sanduni_Herath", "Saduni1998#"}};
 		
 		return data;
 		

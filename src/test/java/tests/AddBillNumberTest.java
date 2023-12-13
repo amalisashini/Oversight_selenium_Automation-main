@@ -45,6 +45,8 @@ public class AddBillNumberTest extends Base{
             String randomLabel = RandomStringUtils.randomAlphabetic(8);
             addBill.billingLabel().sendKeys(randomLabel);
 
+            Thread.sleep(2000);
+
             WebElement dropdown = addBill.tariffDrop();
 
             Actions a=new Actions(driver);
@@ -150,7 +152,7 @@ public class AddBillNumberTest extends Base{
 
         a.sendKeys(Keys.ENTER).perform();
 
-        String randomBillNumber = RandomStringUtils.randomNumeric(8);
+       // String randomBillNumber = RandomStringUtils.randomNumeric(8);
         addBill.billNumber().sendKeys("000000002");
 
         JavascriptExecutor addBillConfirmBtn = (JavascriptExecutor) driver;
@@ -198,7 +200,7 @@ public class AddBillNumberTest extends Base{
     @DataProvider
 	public Object[][] giveLoginData() {
 		
-		Object[][] data = {{"Sanduni_Herath", "Sanduni1998#"}};
+		Object[][] data = {{"Sanduni_Herath", "Saduni1998#"}};
 		
 		return data;
 		

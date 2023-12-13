@@ -94,7 +94,7 @@ public class ConsumerLoginTest extends Base {
 	@DataProvider
 	public Object[][] getLoginData() {
 		
-		Object[][] data = {{"Sanduni_Herath", "Sanduni1998#"}};
+		Object[][] data = {{"Sanduni_Herath", "Saduni1998#"}};
 		
 		return data;
 		
